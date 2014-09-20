@@ -12,14 +12,14 @@
 #import "InformationResponse.h"
 
 //  Defines the listeners for the transfer.
-@property DataTransferListener <NSObject>
+@protocol DataTransferListener <NSObject>
 @optional
 #pragma mark - Overall Transfer
 //  The overall data transfer process has begun.
 -(void)dataTransfer:(id)sender didBeginForUser:(User*)user withTargetId:(NSString*)targetId;
 
 //  The overall data transfer was successful.
--(void)dataTransfer:(id)sender didEndSuccessfullyForUser(User*)user withTargetId:(NSString*)targetId;
+-(void)dataTransfer:(id)sender didEndSuccessfullyForUser:(User*)user withTargetId:(NSString*)targetId;
 
 //  The overall data transfer failed with the error.
 -(void)dataTransfer:(id)sender didEndForUser:(User*)user withTargetId:(NSString*)targetId andError:(NSString*)error;
@@ -61,11 +61,17 @@
 
 //  Defines the data transfer steps.
 @protocol DataTransfer <NSObject>
-//  User whos data is being requested.
-@property(nonatomic, readonly)User *userWithData;
+//  Whether the transfer process is running.  The transfer process is the handshake, request, and then response.
+@property(nonatomic, readonly)BOOL isTransfering;
 
-//  Target the data is being sent to.
-@property(nonatomic, readonly)NSString *targetId;
+//  Whether the transfer is currently handshaking.
+@property(nonatomic, readonly)BOOL isHandshaking;
+
+//  Whether it is waiting for the request.
+@property(nonatomic, readonly)BOOL isWaitingForRequest;
+
+//  Whether it is sending the response.
+@property(nonatomic, readonly)BOOL isSendingResponse;
 
 //  Initiates the transfer handshake between the user and the target.
 -(void)initiateTransferForUser:(User*)user toTargetId:(NSString*)targetId;

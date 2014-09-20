@@ -29,6 +29,7 @@
 		CCADB86B19CDF54A00740375 /* MockUserAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86A19CDF54A00740375 /* MockUserAuthentication.m */; };
 		CCADB87019CE099100740375 /* InformationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86F19CE099100740375 /* InformationRequest.m */; };
 		CCADB87319CE0BEF00740375 /* InformationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB87219CE0BEF00740375 /* InformationResponse.m */; };
+		CCADB87619CE176D00740375 /* MockDataTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB87519CE176D00740375 /* MockDataTransfer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		CCADB86F19CE099100740375 /* InformationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationRequest.m; sourceTree = "<group>"; };
 		CCADB87119CE0BEF00740375 /* InformationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationResponse.h; sourceTree = "<group>"; };
 		CCADB87219CE0BEF00740375 /* InformationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationResponse.m; sourceTree = "<group>"; };
+		CCADB87419CE176D00740375 /* MockDataTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockDataTransfer.h; sourceTree = "<group>"; };
+		CCADB87519CE176D00740375 /* MockDataTransfer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockDataTransfer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				CCADB86D19CE06C100740375 /* DataTransfer.h */,
+				CCADB87419CE176D00740375 /* MockDataTransfer.h */,
+				CCADB87519CE176D00740375 /* MockDataTransfer.m */,
 			);
 			name = Transfer;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 				CCADB82F19CDC78B00740375 /* AppDelegate.m in Sources */,
 				CCADB85E19CDCEF300740375 /* User.m in Sources */,
 				CCADB86419CDD27A00740375 /* Policy.m in Sources */,
+				CCADB87619CE176D00740375 /* MockDataTransfer.m in Sources */,
 				CCADB85B19CDCE8E00740375 /* Person.m in Sources */,
 				CCADB82B19CDC78B00740375 /* main.m in Sources */,
 				CCADB86B19CDF54A00740375 /* MockUserAuthentication.m in Sources */,
