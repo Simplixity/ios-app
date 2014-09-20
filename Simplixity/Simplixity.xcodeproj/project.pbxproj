@@ -1,0 +1,522 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CCADB81F19CDC78B00740375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB81E19CDC78B00740375 /* Foundation.framework */; };
+		CCADB82119CDC78B00740375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB82019CDC78B00740375 /* CoreGraphics.framework */; };
+		CCADB82319CDC78B00740375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB82219CDC78B00740375 /* UIKit.framework */; };
+		CCADB82919CDC78B00740375 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCADB82719CDC78B00740375 /* InfoPlist.strings */; };
+		CCADB82B19CDC78B00740375 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB82A19CDC78B00740375 /* main.m */; };
+		CCADB82F19CDC78B00740375 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB82E19CDC78B00740375 /* AppDelegate.m */; };
+		CCADB83119CDC78B00740375 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCADB83019CDC78B00740375 /* Images.xcassets */; };
+		CCADB83819CDC78B00740375 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB83719CDC78B00740375 /* XCTest.framework */; };
+		CCADB83919CDC78B00740375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB81E19CDC78B00740375 /* Foundation.framework */; };
+		CCADB83A19CDC78B00740375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB82219CDC78B00740375 /* UIKit.framework */; };
+		CCADB84219CDC78B00740375 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCADB84019CDC78B00740375 /* InfoPlist.strings */; };
+		CCADB84419CDC78B00740375 /* SimplixityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB84319CDC78B00740375 /* SimplixityTests.m */; };
+		CCADB85619CDCC4100740375 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB85519CDCC4100740375 /* Address.m */; };
+		CCADB85919CDCC8000740375 /* Name.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB85819CDCC8000740375 /* Name.m */; };
+		CCADB85B19CDCE8E00740375 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB85A19CDCE8E00740375 /* Person.m */; };
+		CCADB85E19CDCEF300740375 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB85D19CDCEF300740375 /* User.m */; };
+		CCADB86119CDD03A00740375 /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86019CDD03A00740375 /* Organization.m */; };
+		CCADB86419CDD27A00740375 /* Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86319CDD27A00740375 /* Policy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CCADB83B19CDC78B00740375 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCADB81319CDC78B00740375 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CCADB81A19CDC78B00740375;
+			remoteInfo = Simplixity;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CCADB81B19CDC78B00740375 /* Simplixity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simplixity.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCADB81E19CDC78B00740375 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CCADB82019CDC78B00740375 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CCADB82219CDC78B00740375 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CCADB82619CDC78B00740375 /* Simplixity-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Simplixity-Info.plist"; sourceTree = "<group>"; };
+		CCADB82819CDC78B00740375 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CCADB82A19CDC78B00740375 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CCADB82C19CDC78B00740375 /* Simplixity-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Simplixity-Prefix.pch"; sourceTree = "<group>"; };
+		CCADB82D19CDC78B00740375 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CCADB82E19CDC78B00740375 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CCADB83019CDC78B00740375 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CCADB83619CDC78B00740375 /* SimplixityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplixityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCADB83719CDC78B00740375 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CCADB83F19CDC78B00740375 /* SimplixityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimplixityTests-Info.plist"; sourceTree = "<group>"; };
+		CCADB84119CDC78B00740375 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CCADB84319CDC78B00740375 /* SimplixityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplixityTests.m; sourceTree = "<group>"; };
+		CCADB85019CDC7D000740375 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		CCADB85419CDCC4100740375 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
+		CCADB85519CDCC4100740375 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
+		CCADB85719CDCC8000740375 /* Name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Name.h; sourceTree = "<group>"; };
+		CCADB85819CDCC8000740375 /* Name.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Name.m; sourceTree = "<group>"; };
+		CCADB85A19CDCE8E00740375 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		CCADB85C19CDCEF300740375 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		CCADB85D19CDCEF300740375 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		CCADB85F19CDD03A00740375 /* Organization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Organization.h; sourceTree = "<group>"; };
+		CCADB86019CDD03A00740375 /* Organization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organization.m; sourceTree = "<group>"; };
+		CCADB86219CDD27A00740375 /* Policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Policy.h; sourceTree = "<group>"; };
+		CCADB86319CDD27A00740375 /* Policy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Policy.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CCADB81819CDC78B00740375 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCADB82119CDC78B00740375 /* CoreGraphics.framework in Frameworks */,
+				CCADB82319CDC78B00740375 /* UIKit.framework in Frameworks */,
+				CCADB81F19CDC78B00740375 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCADB83319CDC78B00740375 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCADB83819CDC78B00740375 /* XCTest.framework in Frameworks */,
+				CCADB83A19CDC78B00740375 /* UIKit.framework in Frameworks */,
+				CCADB83919CDC78B00740375 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CCADB81219CDC78B00740375 = {
+			isa = PBXGroup;
+			children = (
+				CCADB82419CDC78B00740375 /* Simplixity */,
+				CCADB83D19CDC78B00740375 /* SimplixityTests */,
+				CCADB81D19CDC78B00740375 /* Frameworks */,
+				CCADB81C19CDC78B00740375 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CCADB81C19CDC78B00740375 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB81B19CDC78B00740375 /* Simplixity.app */,
+				CCADB83619CDC78B00740375 /* SimplixityTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CCADB81D19CDC78B00740375 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB81E19CDC78B00740375 /* Foundation.framework */,
+				CCADB82019CDC78B00740375 /* CoreGraphics.framework */,
+				CCADB82219CDC78B00740375 /* UIKit.framework */,
+				CCADB83719CDC78B00740375 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCADB82419CDC78B00740375 /* Simplixity */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB85319CDCC3100740375 /* Data Models */,
+				CCADB84F19CDC7B900740375 /* Transfer */,
+				CCADB84E19CDC7B100740375 /* Data Entry */,
+				CCADB84D19CDC79600740375 /* User Authentication */,
+				CCADB82D19CDC78B00740375 /* AppDelegate.h */,
+				CCADB82E19CDC78B00740375 /* AppDelegate.m */,
+				CCADB83019CDC78B00740375 /* Images.xcassets */,
+				CCADB82519CDC78B00740375 /* Supporting Files */,
+			);
+			path = Simplixity;
+			sourceTree = "<group>";
+		};
+		CCADB82519CDC78B00740375 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB82619CDC78B00740375 /* Simplixity-Info.plist */,
+				CCADB82719CDC78B00740375 /* InfoPlist.strings */,
+				CCADB82A19CDC78B00740375 /* main.m */,
+				CCADB82C19CDC78B00740375 /* Simplixity-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CCADB83D19CDC78B00740375 /* SimplixityTests */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB84319CDC78B00740375 /* SimplixityTests.m */,
+				CCADB83E19CDC78B00740375 /* Supporting Files */,
+			);
+			path = SimplixityTests;
+			sourceTree = "<group>";
+		};
+		CCADB83E19CDC78B00740375 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB83F19CDC78B00740375 /* SimplixityTests-Info.plist */,
+				CCADB84019CDC78B00740375 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CCADB84D19CDC79600740375 /* User Authentication */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "User Authentication";
+			sourceTree = "<group>";
+		};
+		CCADB84E19CDC7B100740375 /* Data Entry */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Data Entry";
+			sourceTree = "<group>";
+		};
+		CCADB84F19CDC7B900740375 /* Transfer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Transfer;
+			sourceTree = "<group>";
+		};
+		CCADB85319CDCC3100740375 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB85419CDCC4100740375 /* Address.h */,
+				CCADB85519CDCC4100740375 /* Address.m */,
+				CCADB85719CDCC8000740375 /* Name.h */,
+				CCADB85819CDCC8000740375 /* Name.m */,
+				CCADB85019CDC7D000740375 /* Person.h */,
+				CCADB85A19CDCE8E00740375 /* Person.m */,
+				CCADB85C19CDCEF300740375 /* User.h */,
+				CCADB85D19CDCEF300740375 /* User.m */,
+				CCADB85F19CDD03A00740375 /* Organization.h */,
+				CCADB86019CDD03A00740375 /* Organization.m */,
+				CCADB86219CDD27A00740375 /* Policy.h */,
+				CCADB86319CDD27A00740375 /* Policy.m */,
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CCADB81A19CDC78B00740375 /* Simplixity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCADB84719CDC78B00740375 /* Build configuration list for PBXNativeTarget "Simplixity" */;
+			buildPhases = (
+				CCADB81719CDC78B00740375 /* Sources */,
+				CCADB81819CDC78B00740375 /* Frameworks */,
+				CCADB81919CDC78B00740375 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Simplixity;
+			productName = Simplixity;
+			productReference = CCADB81B19CDC78B00740375 /* Simplixity.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CCADB83519CDC78B00740375 /* SimplixityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCADB84A19CDC78B00740375 /* Build configuration list for PBXNativeTarget "SimplixityTests" */;
+			buildPhases = (
+				CCADB83219CDC78B00740375 /* Sources */,
+				CCADB83319CDC78B00740375 /* Frameworks */,
+				CCADB83419CDC78B00740375 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CCADB83C19CDC78B00740375 /* PBXTargetDependency */,
+			);
+			name = SimplixityTests;
+			productName = SimplixityTests;
+			productReference = CCADB83619CDC78B00740375 /* SimplixityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CCADB81319CDC78B00740375 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Simplixity;
+				TargetAttributes = {
+					CCADB83519CDC78B00740375 = {
+						TestTargetID = CCADB81A19CDC78B00740375;
+					};
+				};
+			};
+			buildConfigurationList = CCADB81619CDC78B00740375 /* Build configuration list for PBXProject "Simplixity" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CCADB81219CDC78B00740375;
+			productRefGroup = CCADB81C19CDC78B00740375 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CCADB81A19CDC78B00740375 /* Simplixity */,
+				CCADB83519CDC78B00740375 /* SimplixityTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CCADB81919CDC78B00740375 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCADB82919CDC78B00740375 /* InfoPlist.strings in Resources */,
+				CCADB83119CDC78B00740375 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCADB83419CDC78B00740375 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCADB84219CDC78B00740375 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CCADB81719CDC78B00740375 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCADB85619CDCC4100740375 /* Address.m in Sources */,
+				CCADB82F19CDC78B00740375 /* AppDelegate.m in Sources */,
+				CCADB85E19CDCEF300740375 /* User.m in Sources */,
+				CCADB86419CDD27A00740375 /* Policy.m in Sources */,
+				CCADB85B19CDCE8E00740375 /* Person.m in Sources */,
+				CCADB82B19CDC78B00740375 /* main.m in Sources */,
+				CCADB86119CDD03A00740375 /* Organization.m in Sources */,
+				CCADB85919CDCC8000740375 /* Name.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCADB83219CDC78B00740375 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCADB84419CDC78B00740375 /* SimplixityTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CCADB83C19CDC78B00740375 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CCADB81A19CDC78B00740375 /* Simplixity */;
+			targetProxy = CCADB83B19CDC78B00740375 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CCADB82719CDC78B00740375 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CCADB82819CDC78B00740375 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CCADB84019CDC78B00740375 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CCADB84119CDC78B00740375 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CCADB84519CDC78B00740375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CCADB84619CDC78B00740375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CCADB84819CDC78B00740375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Simplixity/Simplixity-Prefix.pch";
+				INFOPLIST_FILE = "Simplixity/Simplixity-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CCADB84919CDC78B00740375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Simplixity/Simplixity-Prefix.pch";
+				INFOPLIST_FILE = "Simplixity/Simplixity-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CCADB84B19CDC78B00740375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Simplixity.app/Simplixity";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Simplixity/Simplixity-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SimplixityTests/SimplixityTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		CCADB84C19CDC78B00740375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Simplixity.app/Simplixity";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Simplixity/Simplixity-Prefix.pch";
+				INFOPLIST_FILE = "SimplixityTests/SimplixityTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CCADB81619CDC78B00740375 /* Build configuration list for PBXProject "Simplixity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCADB84519CDC78B00740375 /* Debug */,
+				CCADB84619CDC78B00740375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCADB84719CDC78B00740375 /* Build configuration list for PBXNativeTarget "Simplixity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCADB84819CDC78B00740375 /* Debug */,
+				CCADB84919CDC78B00740375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CCADB84A19CDC78B00740375 /* Build configuration list for PBXNativeTarget "SimplixityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCADB84B19CDC78B00740375 /* Debug */,
+				CCADB84C19CDC78B00740375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CCADB81319CDC78B00740375 /* Project object */;
+}
