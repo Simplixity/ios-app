@@ -70,6 +70,9 @@
 //  Whether it is waiting for the request.
 @property(nonatomic, readonly)BOOL isWaitingForRequest;
 
+//  Whether it is waiting to send the response.
+@property(nonatomic, readonly)BOOL isWaitingToSendResponse;
+
 //  Whether it is sending the response.
 @property(nonatomic, readonly)BOOL isSendingResponse;
 
