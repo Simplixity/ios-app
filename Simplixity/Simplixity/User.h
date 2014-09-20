@@ -35,4 +35,7 @@
 
 //  Whether the user is an organ donor not not.
 @property(nonatomic)BOOL *organDonor;
+
+//  Uids of the conditions the user has.
+@property(nonatomic)NSMutableArray *conditions;
 @end

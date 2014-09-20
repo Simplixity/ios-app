@@ -11,10 +11,10 @@
 #import "Name.h"
 #import "Organization.h"
 
-#define POLICY_TYPE_MEDICAL_INSURANCE = @"policy-type-medical-insurance";
-#define POLICY_TYPE_DENTAL_INSURANCE = @"policy-type-dental-insurance";
-#define POLICY_TYPE_LIFE_INSURANCE = @"policy-type-life-insurance";
-#define POLICY_TYPE_VISION_INSURANCE = @"policy-type-vision-insurance";
+extern NSString * const POLICY_TYPE_MEDICAL_INSURANCE;
+extern NSString * const POLICY_TYPE_DENTAL_INSURANCE;
+extern NSString * const POLICY_TYPE_LIFE_INSURANCE;
+extern NSString * const POLICY_TYPE_VISION_INSURANCE;
 
 //  Defines basic information for a policy
 @interface Policy : NSObject
@@ -34,4 +34,7 @@
 
 @property(nonatomic)NSDate *effectiveStart;
 @property(nonatomic)NSDate *effectiveEnd;
+
+//  Gets whether the policy is in effect.
+@property(nonatomic,readonly)BOOL isInEffect;
 @end

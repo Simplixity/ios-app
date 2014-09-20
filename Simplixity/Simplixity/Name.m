@@ -9,5 +9,41 @@
 #import "Name.h"
 
 @implementation Name
-@synthesize first, middle, last, maiden;
+@synthesize first = _first;
+@synthesize middle = _middle;
+@synthesize last = _last;
+@synthesize maiden = _maiden;
+
+#pragma mark - Getters and Setters
+-(NSString*)first {
+    if (!_first) {
+        _first = @"";
+    }
+    
+    return _first;
+}
+
+-(NSString*)middle {
+    if (!_middle) {
+        _middle = @"";
+    }
+    
+    return _middle;
+}
+
+-(NSString*)last {
+    if (!_last) {
+        _last = @"";
+    }
+    
+    return _last;
+}
+
+-(NSString*)maiden {
+    if (!_maiden) {
+        _maiden = @"";
+    }
+    
+    return _maiden;
+}
 @end

@@ -25,6 +25,7 @@
 		CCADB85E19CDCEF300740375 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB85D19CDCEF300740375 /* User.m */; };
 		CCADB86119CDD03A00740375 /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86019CDD03A00740375 /* Organization.m */; };
 		CCADB86419CDD27A00740375 /* Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86319CDD27A00740375 /* Policy.m */; };
+		CCADB86719CDD6A200740375 /* Condition.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86619CDD6A200740375 /* Condition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		CCADB86019CDD03A00740375 /* Organization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organization.m; sourceTree = "<group>"; };
 		CCADB86219CDD27A00740375 /* Policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Policy.h; sourceTree = "<group>"; };
 		CCADB86319CDD27A00740375 /* Policy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Policy.m; sourceTree = "<group>"; };
+		CCADB86519CDD6A200740375 /* Condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Condition.h; sourceTree = "<group>"; };
+		CCADB86619CDD6A200740375 /* Condition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Condition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +205,8 @@
 				CCADB86019CDD03A00740375 /* Organization.m */,
 				CCADB86219CDD27A00740375 /* Policy.h */,
 				CCADB86319CDD27A00740375 /* Policy.m */,
+				CCADB86519CDD6A200740375 /* Condition.h */,
+				CCADB86619CDD6A200740375 /* Condition.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				CCADB82B19CDC78B00740375 /* main.m in Sources */,
 				CCADB86119CDD03A00740375 /* Organization.m in Sources */,
 				CCADB85919CDCC8000740375 /* Name.m in Sources */,
+				CCADB86719CDD6A200740375 /* Condition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
