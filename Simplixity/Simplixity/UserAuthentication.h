@@ -11,17 +11,14 @@
 
 @protocol UserAuthenticationListener <NSObject>
 @optional
-//  Authenitcation began.  This will always be called.
--(void)userAuthenticationDidBegin:(id)target forUser:(User*)user;
+//  Authenitcation began.
+-(void)userAuthentication:(id)sender didBeginForUser:(User*)user;
 
 //  Authentication was successful.
--(void)userAuthenticationEndedSuccessfully:(id)target forUser:(User*)user;
+-(void)userAuthentication:(id)sender endedSuccessfullyForUser:(User*)user;
 
 //  Authentication failed with an error.
--(void)userAuthentication:(id)target forUser:(User*)user endedWithError:(NSString*)error;
-
-//  Authentication ended.  This will always be called and will be called after success or error.
--(void)userAuthenticationDidEnd:(id)target forUser:(User*)user;
+-(void)userAuthentication:(id)sender forUser:(User*)user endedWithError:(NSString*)error;
 @end
 
 @protocol UserAuthentication <NSObject>

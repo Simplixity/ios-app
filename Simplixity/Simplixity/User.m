@@ -19,6 +19,7 @@
 @synthesize religiousPreference = _religiousPreference;
 @synthesize organDonor = _organDonor;
 @synthesize conditions = _conditions;
+@synthesize policies = _policies;
 
 #pragma mark - Getters and Setters
 -(NSString*)uid {
@@ -91,5 +92,13 @@
     }
     
     return _conditions;
+}
+
+-(NSMutableArray*)policies {
+    if (!_policies) {
+        _policies = [[NSMutableArray alloc] init];
+    }
+    
+    return _policies;
 }
 @end

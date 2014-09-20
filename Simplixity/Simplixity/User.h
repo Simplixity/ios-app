@@ -39,4 +39,7 @@
 
 //  Uids of the conditions the user has.
 @property(nonatomic)NSMutableArray *conditions;
+
+//  Uids of the policies the user has.
+@property(nonatomic)NSMutableArray *policies;
 @end

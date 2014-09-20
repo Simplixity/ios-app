@@ -34,8 +34,8 @@
         for (i = [self.userAuthenticationListeners count] - 1; i >= 0; i++) {
             listener = [self.userAuthenticationListeners objectAtIndex:i];
             
-            if ([listener respondsToSelector:@selector(userAuthenticationDidBegin:forUser:)]) {
-                [listener userAuthenticationDidBegin:self forUser:self.authenticatingUser];
+            if ([listener respondsToSelector:@selector(userAuthentication:didBeginForUser:)]) {
+                [listener userAuthentication:self didBeginForUser:self.authenticatingUser];
             }
         }
         
@@ -44,15 +44,17 @@
         
         [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
             @try {
-                //TODO parse data
                 BOOL success = NO;
+                
+                //TODO parse data
+                self.isAuthenticating = NO;
                 
                 if (success) {
                     for (i = [self.userAuthenticationListeners count] - 1; i >= 0; i++) {
                         listener = [self.userAuthenticationListeners objectAtIndex:i];
                         
-                        if ([listener respondsToSelector:@selector(userAuthenticationEndedSuccessfully:forUser:)]) {
-                            [listener userAuthenticationEndedSuccessfully:self forUser:self.authenticatingUser];
+                        if ([listener respondsToSelector:@selector(userAuthentication:endedSuccessfullyForUser:)]) {
+                            [listener userAuthentication:self endedSuccessfullyForUser:self.authenticatingUser];
                         }
                     }
                 }
@@ -67,22 +69,14 @@
                 }
             }
             @catch(NSException *parseError) {
+                self.isAuthenticating = NO;
+                
                 for (i = [self.userAuthenticationListeners count] - 1; i >= 0; i++) {
                     listener = [self.userAuthenticationListeners objectAtIndex:i];
                     
                     if ([listener respondsToSelector:@selector(userAuthentication:forUser:endedWithError:)]) {
                         [listener userAuthentication:self forUser:self.authenticatingUser endedWithError:[parseError reason]];
                     }
-                }
-            }
-            
-            self.isAuthenticating = NO;
-            
-            for (i = [self.userAuthenticationListeners count] - 1; i >= 0; i++) {
-                listener = [self.userAuthenticationListeners objectAtIndex:i];
-                
-                if ([listener respondsToSelector:@selector(userAuthenticationDidEnd:forUser:)]){
-                    [listener userAuthenticationDidEnd:self forUser:self.authenticatingUser];
                 }
             }
         }];
