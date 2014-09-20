@@ -13,7 +13,12 @@ extern NSString * const CONDITION_TYPE_DISEASE;
 
 //  Defines a condition
 @interface Condition : NSObject
+//  Unique identifier for the condition.
 @property(nonatomic)NSString *uid;
+
+//  Type of the condition with constants starting with CONDITION_TYPE_.
 @property(nonatomic)NSString *type;
+
+//  Underwriters code for the specific condition.
 @property(nonatomic)NSString *code;
 @end

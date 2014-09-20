@@ -7,7 +7,7 @@
 //
 
 #import "User.h"
-//  Defines the information for a user.
+
 @implementation User
 @synthesize uid = _uid;
 @synthesize personUid = _personUid;

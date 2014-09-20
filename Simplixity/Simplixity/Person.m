@@ -64,7 +64,7 @@
 
 -(NSDate*)birthDate {
     if (!_birthDate) {
-        _birthDate = [NSDate date];
+        _birthDate = [NSDate dateWithTimeIntervalSince1970:0];
     }
     
     return _birthDate;

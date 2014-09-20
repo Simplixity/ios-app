@@ -26,6 +26,7 @@
 		CCADB86119CDD03A00740375 /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86019CDD03A00740375 /* Organization.m */; };
 		CCADB86419CDD27A00740375 /* Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86319CDD27A00740375 /* Policy.m */; };
 		CCADB86719CDD6A200740375 /* Condition.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86619CDD6A200740375 /* Condition.m */; };
+		CCADB86B19CDF54A00740375 /* MockUserAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86A19CDF54A00740375 /* MockUserAuthentication.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,9 @@
 		CCADB86319CDD27A00740375 /* Policy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Policy.m; sourceTree = "<group>"; };
 		CCADB86519CDD6A200740375 /* Condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Condition.h; sourceTree = "<group>"; };
 		CCADB86619CDD6A200740375 /* Condition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Condition.m; sourceTree = "<group>"; };
+		CCADB86819CDED3300740375 /* UserAuthentication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAuthentication.h; sourceTree = "<group>"; };
+		CCADB86919CDF54A00740375 /* MockUserAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockUserAuthentication.h; sourceTree = "<group>"; };
+		CCADB86A19CDF54A00740375 /* MockUserAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockUserAuthentication.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,9 @@
 		CCADB84D19CDC79600740375 /* User Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				CCADB86819CDED3300740375 /* UserAuthentication.h */,
+				CCADB86919CDF54A00740375 /* MockUserAuthentication.h */,
+				CCADB86A19CDF54A00740375 /* MockUserAuthentication.m */,
 			);
 			name = "User Authentication";
 			sourceTree = "<group>";
@@ -312,6 +319,7 @@
 				CCADB86419CDD27A00740375 /* Policy.m in Sources */,
 				CCADB85B19CDCE8E00740375 /* Person.m in Sources */,
 				CCADB82B19CDC78B00740375 /* main.m in Sources */,
+				CCADB86B19CDF54A00740375 /* MockUserAuthentication.m in Sources */,
 				CCADB86119CDD03A00740375 /* Organization.m in Sources */,
 				CCADB85919CDCC8000740375 /* Name.m in Sources */,
 				CCADB86719CDD6A200740375 /* Condition.m in Sources */,

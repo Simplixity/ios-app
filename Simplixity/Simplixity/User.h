@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+//  Defines the information for a user.
 @interface User : NSObject
 //  Uid of the users account.
 @property(nonatomic)NSString *uid;
