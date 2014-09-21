@@ -72,8 +72,8 @@
             }
         }
         
-        NSDictionary *params = @{@"username" : self.user.uid, @"target_system_id" : self.targetId};
-        NSMutableURLRequest *request = [NSMutableURLRequest urlWithString:[NSString stringWithFormat:@"%@/authentication", self.serverRoot] andMethod:@"POST" andParams:params];
+        NSDictionary *jsonParams = @{@"username" : self.user.uid, @"target_system_id" : self.targetId};
+        NSMutableURLRequest *request = [NSMutableURLRequest urlWithString:[NSString stringWithFormat:@"%@/handshake", self.serverRoot] andMethod:@"POST" andJSON:jsonParams];
         [request setTimeoutInterval:5];
         
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
@@ -83,8 +83,14 @@
                 BOOL success = NO;
                 NSString *errorMessage;
                 
+                if (!error) {
+                    NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    NSLog(@"Response:%@", responseData);
+                }
+                
                 if (error) {
                     errorMessage = [error helpAnchor];
+                    NSLog(@"Error:%@", errorMessage);
                 }
                 else {
                     NSError *jsonError;
@@ -94,7 +100,11 @@
                         errorMessage = [jsonError helpAnchor];
                     }
                     else {
-                        
+                        NSNumber *acknowledgement = [json objectForKey:@"acknowledgement"];
+                        if ([acknowledgement boolValue]) {
+                            NSLog(@"Initiated Successfully");
+                            success = YES;
+                        }
                     }
                 }
                 
@@ -106,6 +116,8 @@
                             [listener dataTransfer:self handshakeDidEndSuccessfullyForUser:self.user withTargetId:self.targetId];
                         }
                     }
+                    
+                    [self initiateWaitingForRequest];
                 }
                 else {
                     for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
@@ -162,11 +174,19 @@
         id<DataTransferListener> listener;
         long i = 0;
         
+        NSLog(@"Initiating request");
+        
         for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
-            if ([listener respondsToSelector:@selector(dataTransfer:forUser:isWaitingForRequestfromTargetId:)]) {
-                [listener dataTransfer:self forUser:self.user isWaitingForRequestfromTargetId:self.targetId];
+            listener = [self.dataTransferListeners objectAtIndex:i];
+
+            if ([listener respondsToSelector:@selector(dataTransfer:forUser:isWaitingForRequestFromTargetId:)]) {
+                [listener dataTransfer:self forUser:self.user isWaitingForRequestFromTargetId:self.targetId];
             }
         }
+        
+        NSLog(@"Called listener");
+        
+        [self pollForRequest];
     }
 }
 
@@ -179,13 +199,21 @@
         __block id<DataTransferListener> listener;
         __block long i = 0;
         
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        NSDictionary *jsonParams = @{@"username" : self.user.uid, @"target_system_id" : self.targetId};
+        NSMutableURLRequest *request = [NSMutableURLRequest urlWithString:[NSString stringWithFormat:@"%@/poll", self.serverRoot] andMethod:@"POST" andJSON:jsonParams];
+        [request setTimeoutInterval:30];
         
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+            NSLog(@"Poll Request Complete:%@", error);
             self.isPollRequestRunning = NO;
             
             InformationRequest *informationRequest = nil;
             NSString *errorMessage;
+            
+            if (!error) {
+                NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSLog(@"Response:%@", responseData);
+            }
             
             if (error) {
                 errorMessage = [error helpAnchor];
@@ -211,6 +239,8 @@
                 self.isWaitingForRequest = NO;
                 
                 for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
+                    listener = [self.dataTransferListeners objectAtIndex:i];
+                    
                     if ([listener respondsToSelector:@selector(dataTransfer:forUser:requestFailedFromTargetId:withError:)]) {
                         [listener dataTransfer:self forUser:self.user requestFailedFromTargetId:self.targetId withError:@"Polled too many times for request"];
                     }
@@ -243,6 +273,8 @@
         long i = 0;
         
         for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
+            listener = [self.dataTransferListeners objectAtIndex:i];
+            
             if ([listener respondsToSelector:@selector(dataTransfer:forUser:receivedRequest:fromTargetId:)]) {
                 [listener dataTransfer:self forUser:self.user receivedRequest:informationRequest fromTargetId:self.targetId];
             }
@@ -260,6 +292,8 @@
         __block long i = 0;
         
         for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
+            listener = [self.dataTransferListeners objectAtIndex:i];
+            
             if ([listener respondsToSelector:@selector(dataTransfer:forUser:isSendingResponse:toTargetId:)]) {
                 [listener dataTransfer:self forUser:self.user isSendingResponse:informationResponse toTargetId:self.targetId];
             }
@@ -291,6 +325,8 @@
 
                 if (success) {
                     for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
+                        listener = [self.dataTransferListeners objectAtIndex:i];
+                        
                         if ([listener respondsToSelector:@selector(dataTransfer:forUser:acceptedResponse:withTargetId:)]) {
                             [listener dataTransfer:self forUser:self.user acceptedResponse:informationResponse withTargetId:self.targetId];
                         }
@@ -308,6 +344,8 @@
                 }
                 else {
                     for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
+                        listener = [self.dataTransferListeners objectAtIndex:i];
+                        
                         if ([listener respondsToSelector:@selector(dataTransfer:forUser:failedWithError:forTargetId:andResponse:)]) {
                             [listener dataTransfer:self forUser:self.user failedWithError:errorMessage forTargetId:self.targetId andResponse:informationResponse];
                         }
@@ -328,6 +366,8 @@
                 self.isSendingResponse = NO;
                 
                 for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
+                    listener = [self.dataTransferListeners objectAtIndex:i];
+                    
                     if ([listener respondsToSelector:@selector(dataTransfer:forUser:failedWithError:forTargetId:andResponse:)]) {
                         [listener dataTransfer:self forUser:self.user failedWithError:[parseError reason] forTargetId:self.targetId andResponse:informationResponse];
                     }

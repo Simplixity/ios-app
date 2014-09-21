@@ -10,8 +10,10 @@
 #import "UserAuthentication.h"
 #import "MockUserAuthentication.h"
 #import "User.h"
+#import "UserInformation.h"
+#import "MockPersonInformation.h"
 
-@interface AuthenticationViewController () <UITextFieldDelegate, UserAuthenticationListener>
+@interface AuthenticationViewController () <UITextFieldDelegate, UserAuthenticationListener, PersonInformationListener>
 @property(nonatomic)IBOutlet UIImageView *logoImage;
 @property(nonatomic)IBOutlet NSLayoutConstraint *logoImageTopConstraint;
 @property(nonatomic)IBOutlet UITextField *pinInput;
@@ -22,6 +24,7 @@
 @property(nonatomic)BOOL shownFirst;
 @property(nonatomic)User *user;
 @property(nonatomic)MockUserAuthentication *userAuthentication;
+@property(nonatomic)MockPersonInformation *personInformation;
 @end
 
 @implementation AuthenticationViewController
@@ -101,16 +104,7 @@
     }
 }
 
-#pragma mark - UserAuthentication
--(MockUserAuthentication*)userAuthentication {
-    if (!_userAuthentication) {
-        _userAuthentication = [[MockUserAuthentication alloc] init];
-        [self.userAuthentication addUserAuthenticationListener:self];
-    }
-    
-    return _userAuthentication;
-}
-
+#pragma mark - UserAuthenticationListener
 -(void)userAuthentication:(id)sender didBeginForUser:(User*)user {
     NSLog(@"userAuthentication:didBeginForUser:");
     self.loadingLabel.text = @"Authenticating.  Please wait.";
@@ -120,7 +114,7 @@
 -(void)userAuthentication:(id)sender endedSuccessfullyForUser:(User*)user {
     NSLog(@"userAuthentication:endedSuccessfullyForUser:");
     self.loadingLabel.text = @"Authenticated.";
-    [self showLoginUI];
+    [self.personInformation loadInformationForPerson:self.user.uid];
 }
 
 -(void)userAuthentication:(id)sender forUser:(User*)user endedWithError:(NSString*)error {
@@ -165,10 +159,36 @@
 
 -(IBAction)handleSignInClick:(id)sender
 {
+    [self submitInfoForAuthentication];
+}
+
+-(void)submitInfoForAuthentication {
+    [self.pinInput resignFirstResponder];
     [self.userAuthentication authenticateUser:self.user withPassword:self.pinInput.text];
 }
 
-#pragma mark - User
+#pragma mark - UserInformationListener
+-(void)personInformation:(id)sender didBeginLoadingForPersonUid:(NSString*)personUid {
+    self.loadingLabel.text = @"Loading user information";
+}
+
+-(void)personInformation:(id)sender didEndLoadingSuccessfullyForPersonUid:(NSString*)personUid intoPerson:(Person*)person {
+    [self showLoginUI];
+    
+    if (self.delegate) {
+        [self.delegate authenticationViewControllerDidAuthenticateSuccessfully:self withUser:self.user andPerson:person];
+    }
+}
+
+-(void)personInformation:(id)sender didEndLoadingForPersonUid:(NSString*)personUid withError:(NSString*)error {
+    [self showLoginUI];
+    
+    if (self.delegate) {
+        [self.delegate authenticationViewControllerDidAuthenticateSuccessfully:self withUser:self.user andPerson:nil];
+    }
+}
+
+#pragma mark - Getters and setters
 -(User*)user {
     if (!_user) {
         _user = [[User alloc] init];
@@ -176,6 +196,24 @@
     }
     
     return _user;
+}
+
+-(MockUserAuthentication*)userAuthentication {
+    if (!_userAuthentication) {
+        _userAuthentication = [[MockUserAuthentication alloc] init];
+        [self.userAuthentication addUserAuthenticationListener:self];
+    }
+    
+    return _userAuthentication;
+}
+
+-(MockPersonInformation*)personInformation {
+    if (!_personInformation) {
+        _personInformation = [[MockPersonInformation alloc] init];
+        [self.personInformation addPersonInformationListener:self];
+    }
+    
+    return _personInformation;
 }
 
 @end

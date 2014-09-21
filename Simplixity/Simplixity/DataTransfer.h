@@ -38,7 +38,7 @@
 
 #pragma mark - Receiving Data Request
 //  We are waiting for the data request to come in.
--(void)dataTransfer:(id)sender forUser:(User*)user isWaitingForRequestfromTargetId:(NSString*)targetId;
+-(void)dataTransfer:(id)sender forUser:(User*)user isWaitingForRequestFromTargetId:(NSString*)targetId;
 
 //  The request with what type of information to provide has been received.
 -(void)dataTransfer:(id)sender forUser:(User*)user receivedRequest:(InformationRequest*)request fromTargetId:(NSString*)targetId;

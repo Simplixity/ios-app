@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+#import "Person.h"
+
+@class AuthenticationViewController;
+
+//  Delegate used to communicate
+@protocol AuthenticationViewControllerDelegate <NSObject>
+//  Called when the controller has authenticated successfully.
+-(void)authenticationViewControllerDidAuthenticateSuccessfully:(AuthenticationViewController*)controller withUser:(User*)user andPerson:(Person*)person;
+@end
 
 @interface AuthenticationViewController : UIViewController
-
+//  Delegate used to communicate.
+@property(nonatomic)id<AuthenticationViewControllerDelegate>delegate;
 @end

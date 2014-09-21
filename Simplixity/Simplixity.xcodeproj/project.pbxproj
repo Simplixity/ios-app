@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC7551E919CF128B00D0D088 /* DataTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7551E819CF128B00D0D088 /* DataTransferViewController.m */; };
+		CC7551ED19CF12AF00D0D088 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7551EC19CF12AF00D0D088 /* HomeViewController.m */; };
+		CC7551F419CF38AC00D0D088 /* MockPersonInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7551F319CF38AC00D0D088 /* MockPersonInformation.m */; };
 		CCADB81F19CDC78B00740375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB81E19CDC78B00740375 /* Foundation.framework */; };
 		CCADB82119CDC78B00740375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB82019CDC78B00740375 /* CoreGraphics.framework */; };
 		CCADB82319CDC78B00740375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB82219CDC78B00740375 /* UIKit.framework */; };
@@ -48,6 +51,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CC7551E719CF128B00D0D088 /* DataTransferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTransferViewController.h; sourceTree = "<group>"; };
+		CC7551E819CF128B00D0D088 /* DataTransferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTransferViewController.m; sourceTree = "<group>"; };
+		CC7551EB19CF12AF00D0D088 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		CC7551EC19CF12AF00D0D088 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		CC7551EF19CF363A00D0D088 /* UserInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInformation.h; sourceTree = "<group>"; };
+		CC7551F219CF38AC00D0D088 /* MockPersonInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPersonInformation.h; sourceTree = "<group>"; };
+		CC7551F319CF38AC00D0D088 /* MockPersonInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPersonInformation.m; sourceTree = "<group>"; };
 		CCADB81B19CDC78B00740375 /* Simplixity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simplixity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCADB81E19CDC78B00740375 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCADB82019CDC78B00740375 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,6 +132,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC7551E519CF126300D0D088 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB87B19CE3C2500740375 /* AuthenticationViewController.h */,
+				CCADB87C19CE3C2500740375 /* AuthenticationViewController.m */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		CC7551E619CF126E00D0D088 /* Data Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				CC7551E719CF128B00D0D088 /* DataTransferViewController.h */,
+				CC7551E819CF128B00D0D088 /* DataTransferViewController.m */,
+			);
+			name = "Data Transfer";
+			sourceTree = "<group>";
+		};
+		CC7551EA19CF129C00D0D088 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CC7551EB19CF12AF00D0D088 /* HomeViewController.h */,
+				CC7551EC19CF12AF00D0D088 /* HomeViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		CC7551EE19CF362600D0D088 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				CC7551EF19CF363A00D0D088 /* UserInformation.h */,
+				CC7551F219CF38AC00D0D088 /* MockPersonInformation.h */,
+				CC7551F319CF38AC00D0D088 /* MockPersonInformation.m */,
+			);
+			name = UserInfo;
+			sourceTree = "<group>";
+		};
 		CCADB81219CDC78B00740375 = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +293,7 @@
 		CCADB87919CE3BF700740375 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				CC7551EE19CF362600D0D088 /* UserInfo */,
 				CCADB88B19CE5C3000740375 /* URLEncoding */,
 				CCADB85319CDCC3100740375 /* Data Models */,
 				CCADB84F19CDC7B900740375 /* Transfer */,
@@ -257,8 +305,9 @@
 		CCADB87A19CE3C0200740375 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CCADB87B19CE3C2500740375 /* AuthenticationViewController.h */,
-				CCADB87C19CE3C2500740375 /* AuthenticationViewController.m */,
+				CC7551EA19CF129C00D0D088 /* Home */,
+				CC7551E619CF126E00D0D088 /* Data Transfer */,
+				CC7551E519CF126300D0D088 /* Authentication */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -386,10 +435,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCADB85619CDCC4100740375 /* Address.m in Sources */,
+				CC7551F419CF38AC00D0D088 /* MockPersonInformation.m in Sources */,
 				CCADB82F19CDC78B00740375 /* AppDelegate.m in Sources */,
 				CCADB85E19CDCEF300740375 /* User.m in Sources */,
 				CCADB86419CDD27A00740375 /* Policy.m in Sources */,
 				CCADB87619CE176D00740375 /* MockDataTransfer.m in Sources */,
+				CC7551ED19CF12AF00D0D088 /* HomeViewController.m in Sources */,
 				CCADB85B19CDCE8E00740375 /* Person.m in Sources */,
 				CCADB88E19CE5C6200740375 /* NSMutableURLRequest+EasyParams.m in Sources */,
 				CCADB87D19CE3C2500740375 /* AuthenticationViewController.m in Sources */,
@@ -400,6 +451,7 @@
 				CCADB85919CDCC8000740375 /* Name.m in Sources */,
 				CCADB87319CE0BEF00740375 /* InformationResponse.m in Sources */,
 				CCADB86719CDD6A200740375 /* Condition.m in Sources */,
+				CC7551E919CF128B00D0D088 /* DataTransferViewController.m in Sources */,
 				CCADB87019CE099100740375 /* InformationRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -599,6 +651,7 @@
 				CCADB84919CDC78B00740375 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CCADB84A19CDC78B00740375 /* Build configuration list for PBXNativeTarget "SimplixityTests" */ = {
 			isa = XCConfigurationList;
@@ -607,6 +660,7 @@
 				CCADB84C19CDC78B00740375 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

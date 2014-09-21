@@ -48,6 +48,7 @@
         
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
             @try {
+                NSLog(@"User Authentication Complete:%@", error);
                 self.isAuthenticating = NO;
                 
                 BOOL success = NO;
