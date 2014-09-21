@@ -11,6 +11,13 @@
 		CC7551ED19CF12AF00D0D088 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7551EC19CF12AF00D0D088 /* HomeViewController.m */; };
 		CC7551F419CF38AC00D0D088 /* MockPersonInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7551F319CF38AC00D0D088 /* MockPersonInformation.m */; };
 		CC7551F819CF55F300D0D088 /* ApproveRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7551F719CF55F300D0D088 /* ApproveRequestViewController.m */; };
+		CC7551FA19CF694700D0D088 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = CC7551F919CF694700D0D088 /* check.png */; };
+		CC7551FE19CF73D200D0D088 /* icon-29px.png in Resources */ = {isa = PBXBuildFile; fileRef = CC7551FB19CF73D200D0D088 /* icon-29px.png */; };
+		CC7551FF19CF73D200D0D088 /* icon-40px.png in Resources */ = {isa = PBXBuildFile; fileRef = CC7551FC19CF73D200D0D088 /* icon-40px.png */; };
+		CC75520019CF73D200D0D088 /* icon-76px.png in Resources */ = {isa = PBXBuildFile; fileRef = CC7551FD19CF73D200D0D088 /* icon-76px.png */; };
+		CC75520419CF745500D0D088 /* icon-29px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC75520119CF745500D0D088 /* icon-29px@2x.png */; };
+		CC75520519CF745500D0D088 /* icon-40px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC75520219CF745500D0D088 /* icon-40px@2x.png */; };
+		CC75520619CF745500D0D088 /* icon-76px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC75520319CF745500D0D088 /* icon-76px@2x.png */; };
 		CCADB81F19CDC78B00740375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB81E19CDC78B00740375 /* Foundation.framework */; };
 		CCADB82119CDC78B00740375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB82019CDC78B00740375 /* CoreGraphics.framework */; };
 		CCADB82319CDC78B00740375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB82219CDC78B00740375 /* UIKit.framework */; };
@@ -61,6 +68,13 @@
 		CC7551F319CF38AC00D0D088 /* MockPersonInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPersonInformation.m; sourceTree = "<group>"; };
 		CC7551F619CF55F300D0D088 /* ApproveRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApproveRequestViewController.h; sourceTree = "<group>"; };
 		CC7551F719CF55F300D0D088 /* ApproveRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproveRequestViewController.m; sourceTree = "<group>"; };
+		CC7551F919CF694700D0D088 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = ../check.png; sourceTree = "<group>"; };
+		CC7551FB19CF73D200D0D088 /* icon-29px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-29px.png"; path = "../icon-29px.png"; sourceTree = "<group>"; };
+		CC7551FC19CF73D200D0D088 /* icon-40px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-40px.png"; path = "../icon-40px.png"; sourceTree = "<group>"; };
+		CC7551FD19CF73D200D0D088 /* icon-76px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-76px.png"; path = "../icon-76px.png"; sourceTree = "<group>"; };
+		CC75520119CF745500D0D088 /* icon-29px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-29px@2x.png"; path = "../icon-29px@2x.png"; sourceTree = "<group>"; };
+		CC75520219CF745500D0D088 /* icon-40px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-40px@2x.png"; path = "../icon-40px@2x.png"; sourceTree = "<group>"; };
+		CC75520319CF745500D0D088 /* icon-76px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-76px@2x.png"; path = "../icon-76px@2x.png"; sourceTree = "<group>"; };
 		CCADB81B19CDC78B00740375 /* Simplixity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simplixity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCADB81E19CDC78B00740375 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCADB82019CDC78B00740375 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -106,7 +120,7 @@
 		CCADB87C19CE3C2500740375 /* AuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationViewController.m; sourceTree = "<group>"; };
 		CCADB87F19CE3CB200740375 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		CCADB88019CE3CB200740375 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
-		CCADB88919CE483900740375 /* white_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_logo.png; sourceTree = "<group>"; };
+		CCADB88919CE483900740375 /* white_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = white_logo.png; path = ../white_logo.png; sourceTree = "<group>"; };
 		CCADB88C19CE5C6200740375 /* NSMutableURLRequest+EasyParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+EasyParams.h"; sourceTree = "<group>"; };
 		CCADB88D19CE5C6200740375 /* NSMutableURLRequest+EasyParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+EasyParams.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,7 +198,6 @@
 		CCADB81219CDC78B00740375 = {
 			isa = PBXGroup;
 			children = (
-				CCADB88919CE483900740375 /* white_logo.png */,
 				CCADB82419CDC78B00740375 /* Simplixity */,
 				CCADB87719CE3B7500740375 /* ipad.storyboard */,
 				CCADB83D19CDC78B00740375 /* SimplixityTests */,
@@ -337,6 +350,14 @@
 		CCADB88219CE438F00740375 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CC75520119CF745500D0D088 /* icon-29px@2x.png */,
+				CC75520219CF745500D0D088 /* icon-40px@2x.png */,
+				CC75520319CF745500D0D088 /* icon-76px@2x.png */,
+				CC7551FB19CF73D200D0D088 /* icon-29px.png */,
+				CC7551FC19CF73D200D0D088 /* icon-40px.png */,
+				CC7551FD19CF73D200D0D088 /* icon-76px.png */,
+				CCADB88919CE483900740375 /* white_logo.png */,
+				CC7551F919CF694700D0D088 /* check.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -425,10 +446,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC75520619CF745500D0D088 /* icon-76px@2x.png in Resources */,
 				CCADB87819CE3B7500740375 /* ipad.storyboard in Resources */,
+				CC7551FA19CF694700D0D088 /* check.png in Resources */,
 				CCADB82919CDC78B00740375 /* InfoPlist.strings in Resources */,
+				CC75520019CF73D200D0D088 /* icon-76px.png in Resources */,
+				CC7551FE19CF73D200D0D088 /* icon-29px.png in Resources */,
+				CC75520519CF745500D0D088 /* icon-40px@2x.png in Resources */,
 				CCADB88A19CE483900740375 /* white_logo.png in Resources */,
 				CCADB83119CDC78B00740375 /* Images.xcassets in Resources */,
+				CC7551FF19CF73D200D0D088 /* icon-40px.png in Resources */,
+				CC75520419CF745500D0D088 /* icon-29px@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

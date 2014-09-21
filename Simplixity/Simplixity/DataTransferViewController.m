@@ -17,6 +17,7 @@
 @property(nonatomic)IBOutlet UIButton *registerButton;
 @property(nonatomic)IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property(nonatomic)IBOutlet UILabel *loadingLabel;
+@property(nonatomic)IBOutlet UIImageView *successImage;
 
 //  DataTransfer used to communicate with the server.
 @property(nonatomic)id<DataTransfer> dataTransfer;
@@ -31,16 +32,20 @@
 @synthesize loadingIndicator = _loadingIndicator;
 @synthesize loadingLabel = _loadingLabel;
 @synthesize delegate = _delegate;
+@synthesize successImage = _successImage;
 
 #pragma mark - View lifecycle
 -(void)viewWillAppear:(BOOL)animated {
     if (self.shouldReset) {
         [self.loadingIndicator stopAnimating];
-        self.loadingIndicator.alpha = 0;
+        self.loadingIndicator.alpha = 0.0f;
         self.loadingIndicator.hidden = YES;
         
         self.loadingLabel.hidden = YES;
-        self.loadingLabel.alpha = 0;
+        self.loadingLabel.alpha = 0.0f;
+        
+        self.successImage.hidden = YES;
+        self.successImage.alpha = 0.0f;
     }
     
     [super viewWillAppear:animated];
@@ -96,9 +101,15 @@
     }];
 }
 
+//  Starts the registration process
+-(void)startRegistration {
+    [self unfocusRegistrationCode];
+    [self.dataTransfer initiateTransferForUser:self.user toTargetId:self.registrationCodeInput.text];
+}
+
 #pragma mark - Button handlers
 -(IBAction)handleRegistrationClick:(id)sender {
-    [self.dataTransfer initiateTransferForUser:self.user toTargetId:self.registrationCodeInput.text];
+    [self startRegistration];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -206,15 +217,26 @@
     NSLog(@"dataTransfer:forUser:acceptedResponse:withTargetId:");
     self.loadingLabel.text = @"Registration Complete";
     [self.loadingIndicator stopAnimating];
+    self.successImage.hidden = NO;
+    self.successImage.alpha = 0.0f;
     
     [UIView animateWithDuration:.25 animations:^{
         self.loadingIndicator.alpha = 0.0f;
+        self.successImage.alpha = 1.0f;
     }];
     
     if (self.delegate) {
         if ([self.delegate respondsToSelector:@selector(dataTransferViewController:forUser:successfullySentResponse:)]) {
             [self.delegate dataTransferViewController:self forUser:self.user successfullySentResponse:response];
         }
+    }
+    
+    [self performSelector:@selector(dismissAfterDelay) withObject:nil afterDelay:10];
+}
+
+-(void)dismissAfterDelay {
+    if ([self.delegate respondsToSelector:@selector(dataTransferViewController:requestResignForUser:)]) {
+        [self.delegate dataTransferViewController:self requestResignForUser:self.user];
     }
 }
 

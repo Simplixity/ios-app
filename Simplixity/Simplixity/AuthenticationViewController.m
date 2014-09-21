@@ -16,7 +16,8 @@
 @interface AuthenticationViewController () <UITextFieldDelegate, UserAuthenticationListener, PersonInformationListener>
 @property(nonatomic)IBOutlet UIImageView *logoImage;
 @property(nonatomic)IBOutlet NSLayoutConstraint *logoImageTopConstraint;
-@property(nonatomic)IBOutlet UITextField *pinInput;
+@property(nonatomic)IBOutlet UITextField *usernameInput;
+@property(nonatomic)IBOutlet UITextField *passwordInput;
 @property(nonatomic)IBOutlet UIButton *signInButton;
 @property(nonatomic)IBOutlet UIButton *signUpButton;
 @property(nonatomic)IBOutlet UIActivityIndicatorView *loadingIndicator;
@@ -30,7 +31,8 @@
 @implementation AuthenticationViewController
 @synthesize logoImage = _logoImage;
 @synthesize logoImageTopConstraint = _logoImageTopConstraint;
-@synthesize pinInput = _pinInput;
+@synthesize usernameInput = _usernameInput;
+@synthesize passwordInput = _passwordInput;
 @synthesize signInButton = _signInButton;
 @synthesize signUpButton = _signUpButton;
 @synthesize loadingIndicator = _loadingIndicator;
@@ -45,7 +47,8 @@
     if (!self.shownFirst) {
         self.shownFirst = YES;
         
-        self.pinInput.alpha = 0.0f;
+        self.usernameInput.alpha = 0.0f;
+        self.passwordInput.alpha = 0.0f;
         self.signInButton.alpha = 0.0f;
         self.signUpButton.alpha = 0.0f;
         self.loadingIndicator.alpha = 0.0f;
@@ -58,7 +61,8 @@
             
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:.5 animations:^{
-                self.pinInput.alpha = 1.0f;
+                self.usernameInput.alpha = 1.0f;
+                self.passwordInput.alpha = 1.0f;
                 self.signInButton.alpha = 1.0f;
                 self.signUpButton.alpha = 1.0f;
             }];
@@ -72,35 +76,59 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *) event
 {
     UITouch *touch = [[event allTouches] anyObject];
-    if ([self.pinInput isFirstResponder] && (self.pinInput != touch.view))
+    if ([self.passwordInput isFirstResponder] && (self.passwordInput != touch.view))
     {
-        [self unfocusPin];
+        [self unfocusPassword];
+    }
+    else if ([self.usernameInput isFirstResponder] && (self.usernameInput != touch.view))
+    {
+        [self unfocusUsername];
     }
 }
 
--(void)focusPin {
+-(void)focusPassword {
     [UIView animateWithDuration:0.25 animations:^{
-        self.pinInput.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
+        self.passwordInput.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
     }];
 }
 
--(void)unfocusPin {
-    [self.pinInput resignFirstResponder];
+-(void)focusUsername {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.usernameInput.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
+    }];
+}
+
+-(void)unfocusPassword {
+    [self.passwordInput resignFirstResponder];
     
     [UIView animateWithDuration:0.25 animations:^{
-        self.pinInput.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.25f];
+        self.passwordInput.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.25f];
+    }];
+}
+
+-(void)unfocusUsername {
+    [self.usernameInput resignFirstResponder];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.usernameInput.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.25f];
     }];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (textField == self.pinInput) {
-        [self focusPin];
+    if (textField == self.passwordInput) {
+        [self focusPassword];
+    }
+    else if (textField == self.usernameInput) {
+        [self focusUsername];
     }
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
-    if (textField == self.pinInput) {
-        [self unfocusPin];
+    if (textField == self.passwordInput) {
+        [self unfocusPassword];
+    }
+    else if (textField == self.usernameInput) {
+        [self unfocusUsername];
     }
 }
 
@@ -126,13 +154,16 @@
 
 -(void)showLoadingUI {
     NSLog(@"showLoadingUI");
-    self.pinInput.enabled = NO;
+
+    self.usernameInput.enabled = NO;
+    self.passwordInput.enabled = NO;
     self.signInButton.enabled = NO;
     self.signUpButton.enabled = NO;
     [self.loadingIndicator startAnimating];
     
     [UIView animateWithDuration:.25 animations:^{
-        self.pinInput.alpha = 0.0f;
+        self.usernameInput.alpha = 0.0f;
+        self.passwordInput.alpha = 0.0f;
         self.signInButton.alpha = 0.0f;
         self.signUpButton.alpha = 0.0f;
         self.loadingIndicator.alpha = 1.0f;
@@ -145,13 +176,15 @@
     [self.loadingIndicator stopAnimating];
     
     [UIView animateWithDuration:.25 animations:^{
-        self.pinInput.alpha = 1.0f;
+        self.usernameInput.alpha = 1.0f;
+        self.passwordInput.alpha = 1.0f;
         self.signInButton.alpha = 1.0f;
         self.signUpButton.alpha = 1.0f;
         self.loadingIndicator.alpha = 0.0f;
         self.loadingLabel.alpha = 0.0f;
     } completion:^(BOOL finished) {
-        self.pinInput.enabled = YES;
+        self.usernameInput.enabled = YES;
+        self.passwordInput.enabled = YES;
         self.signInButton.enabled = YES;
         self.signUpButton.enabled = YES;
     }];
@@ -163,8 +196,11 @@
 }
 
 -(void)submitInfoForAuthentication {
-    [self.pinInput resignFirstResponder];
-    [self.userAuthentication authenticateUser:self.user withPassword:self.pinInput.text];
+    [self unfocusUsername];
+    [self unfocusPassword];
+    
+    self.user.uid = self.usernameInput.text;
+    [self.userAuthentication authenticateUser:self.user withPassword:self.passwordInput.text];
 }
 
 #pragma mark - UserInformationListener

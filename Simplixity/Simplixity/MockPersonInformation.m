@@ -66,16 +66,14 @@
                 }
                 else {
                     NSError *jsonError;
-                    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
                     
-                    NSLog(@"JSONArray:%@", jsonArray);
+                    NSLog(@"JSON:%@", json);
                     
                     if (jsonError) {
                         errorMessage = [jsonError helpAnchor];
                     }
-                    else if (jsonArray) {
-                        NSDictionary *json = [jsonArray objectAtIndex:0];
-                        NSLog(@"JSON:%@", json);
+                    else if (json) {
                         if (json) {
                             person.uid = self.personUid;
                             person.name.first = [json objectForKey:@"first_name"];
