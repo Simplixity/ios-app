@@ -30,6 +30,11 @@
 		CCADB87019CE099100740375 /* InformationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB86F19CE099100740375 /* InformationRequest.m */; };
 		CCADB87319CE0BEF00740375 /* InformationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB87219CE0BEF00740375 /* InformationResponse.m */; };
 		CCADB87619CE176D00740375 /* MockDataTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB87519CE176D00740375 /* MockDataTransfer.m */; };
+		CCADB87819CE3B7500740375 /* ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCADB87719CE3B7500740375 /* ipad.storyboard */; };
+		CCADB87D19CE3C2500740375 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB87C19CE3C2500740375 /* AuthenticationViewController.m */; };
+		CCADB88119CE3CB200740375 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB88019CE3CB200740375 /* GradientView.m */; };
+		CCADB88A19CE483900740375 /* white_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CCADB88919CE483900740375 /* white_logo.png */; };
+		CCADB88E19CE5C6200740375 /* NSMutableURLRequest+EasyParams.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADB88D19CE5C6200740375 /* NSMutableURLRequest+EasyParams.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +88,14 @@
 		CCADB87219CE0BEF00740375 /* InformationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationResponse.m; sourceTree = "<group>"; };
 		CCADB87419CE176D00740375 /* MockDataTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockDataTransfer.h; sourceTree = "<group>"; };
 		CCADB87519CE176D00740375 /* MockDataTransfer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockDataTransfer.m; sourceTree = "<group>"; };
+		CCADB87719CE3B7500740375 /* ipad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ipad.storyboard; sourceTree = "<group>"; };
+		CCADB87B19CE3C2500740375 /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
+		CCADB87C19CE3C2500740375 /* AuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationViewController.m; sourceTree = "<group>"; };
+		CCADB87F19CE3CB200740375 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		CCADB88019CE3CB200740375 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
+		CCADB88919CE483900740375 /* white_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_logo.png; sourceTree = "<group>"; };
+		CCADB88C19CE5C6200740375 /* NSMutableURLRequest+EasyParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+EasyParams.h"; sourceTree = "<group>"; };
+		CCADB88D19CE5C6200740375 /* NSMutableURLRequest+EasyParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+EasyParams.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +125,9 @@
 		CCADB81219CDC78B00740375 = {
 			isa = PBXGroup;
 			children = (
+				CCADB88919CE483900740375 /* white_logo.png */,
 				CCADB82419CDC78B00740375 /* Simplixity */,
+				CCADB87719CE3B7500740375 /* ipad.storyboard */,
 				CCADB83D19CDC78B00740375 /* SimplixityTests */,
 				CCADB81D19CDC78B00740375 /* Frameworks */,
 				CCADB81C19CDC78B00740375 /* Products */,
@@ -142,10 +157,10 @@
 		CCADB82419CDC78B00740375 /* Simplixity */ = {
 			isa = PBXGroup;
 			children = (
-				CCADB85319CDCC3100740375 /* Data Models */,
-				CCADB84F19CDC7B900740375 /* Transfer */,
-				CCADB84E19CDC7B100740375 /* Confirmation */,
-				CCADB84D19CDC79600740375 /* Authentication */,
+				CCADB88219CE438F00740375 /* Assets */,
+				CCADB87E19CE3C9D00740375 /* Views */,
+				CCADB87A19CE3C0200740375 /* Controllers */,
+				CCADB87919CE3BF700740375 /* Lib */,
 				CCADB82D19CDC78B00740375 /* AppDelegate.h */,
 				CCADB82E19CDC78B00740375 /* AppDelegate.m */,
 				CCADB83019CDC78B00740375 /* Images.xcassets */,
@@ -193,13 +208,6 @@
 			name = Authentication;
 			sourceTree = "<group>";
 		};
-		CCADB84E19CDC7B100740375 /* Confirmation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Confirmation;
-			sourceTree = "<group>";
-		};
 		CCADB84F19CDC7B900740375 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +241,51 @@
 				CCADB87219CE0BEF00740375 /* InformationResponse.m */,
 			);
 			name = "Data Models";
+			sourceTree = "<group>";
+		};
+		CCADB87919CE3BF700740375 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB88B19CE5C3000740375 /* URLEncoding */,
+				CCADB85319CDCC3100740375 /* Data Models */,
+				CCADB84F19CDC7B900740375 /* Transfer */,
+				CCADB84D19CDC79600740375 /* Authentication */,
+			);
+			name = Lib;
+			sourceTree = "<group>";
+		};
+		CCADB87A19CE3C0200740375 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB87B19CE3C2500740375 /* AuthenticationViewController.h */,
+				CCADB87C19CE3C2500740375 /* AuthenticationViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		CCADB87E19CE3C9D00740375 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB87F19CE3CB200740375 /* GradientView.h */,
+				CCADB88019CE3CB200740375 /* GradientView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		CCADB88219CE438F00740375 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		CCADB88B19CE5C3000740375 /* URLEncoding */ = {
+			isa = PBXGroup;
+			children = (
+				CCADB88C19CE5C6200740375 /* NSMutableURLRequest+EasyParams.h */,
+				CCADB88D19CE5C6200740375 /* NSMutableURLRequest+EasyParams.m */,
+			);
+			name = URLEncoding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,7 +363,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCADB87819CE3B7500740375 /* ipad.storyboard in Resources */,
 				CCADB82919CDC78B00740375 /* InfoPlist.strings in Resources */,
+				CCADB88A19CE483900740375 /* white_logo.png in Resources */,
 				CCADB83119CDC78B00740375 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,9 +391,12 @@
 				CCADB86419CDD27A00740375 /* Policy.m in Sources */,
 				CCADB87619CE176D00740375 /* MockDataTransfer.m in Sources */,
 				CCADB85B19CDCE8E00740375 /* Person.m in Sources */,
+				CCADB88E19CE5C6200740375 /* NSMutableURLRequest+EasyParams.m in Sources */,
+				CCADB87D19CE3C2500740375 /* AuthenticationViewController.m in Sources */,
 				CCADB82B19CDC78B00740375 /* main.m in Sources */,
 				CCADB86B19CDF54A00740375 /* MockUserAuthentication.m in Sources */,
 				CCADB86119CDD03A00740375 /* Organization.m in Sources */,
+				CCADB88119CE3CB200740375 /* GradientView.m in Sources */,
 				CCADB85919CDCC8000740375 /* Name.m in Sources */,
 				CCADB87319CE0BEF00740375 /* InformationResponse.m in Sources */,
 				CCADB86719CDD6A200740375 /* Condition.m in Sources */,

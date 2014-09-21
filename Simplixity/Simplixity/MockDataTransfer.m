@@ -50,7 +50,7 @@
         self.targetId = targetId;
         
         __block id<DataTransferListener> listener;
-        __block int i = 0;
+        __block long i = 0;
         
         for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
             listener = [self.dataTransferListeners objectAtIndex:i];
@@ -145,7 +145,7 @@
         self.pollRequestCount = 0;
         
         id<DataTransferListener> listener;
-        int i = 0;
+        long i = 0;
         
         for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
             if ([listener respondsToSelector:@selector(dataTransfer:forUser:isWaitingForRequestfromTargetId:)]) {
@@ -162,7 +162,7 @@
         self.pollRequestCount++;
         
         __block id<DataTransferListener> listener;
-        __block int i = 0;
+        __block long i = 0;
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -219,7 +219,7 @@
         self.isWaitingToSendResponse = YES;
         
         id<DataTransferListener> listener;
-        int i = 0;
+        long i = 0;
         
         for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
             if ([listener respondsToSelector:@selector(dataTransfer:forUser:receivedRequest:fromTargetId:)]) {
@@ -236,7 +236,7 @@
         self.isSendingResponse = YES;
         
         __block id<DataTransferListener> listener;
-        __block int i = 0;
+        __block long i = 0;
         
         for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
             if ([listener respondsToSelector:@selector(dataTransfer:forUser:isSendingResponse:toTargetId:)]) {

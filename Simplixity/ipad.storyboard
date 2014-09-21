@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qlb-hu-aoQ">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Authentication View Controller-->
+        <scene sceneID="288-yp-Xmg">
+            <objects>
+                <viewController id="6N7-E1-EVS" customClass="AuthenticationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jhH-cR-30N"/>
+                        <viewControllerLayoutGuide type="bottom" id="iv1-gz-RHs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="24B-ak-qSG">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="uVL-YX-Wg5">
+                                <rect key="frame" x="0.0" y="432" width="768" height="160"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="a9o-YP-o8B"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Passcode" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mRw-Ys-neX">
+                                <rect key="frame" x="179" y="480" width="410" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="0.25" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6N7-E1-EVS" id="SnE-5Z-Ejn"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rut-XF-sev">
+                                <rect key="frame" x="179" y="601" width="411" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="0.25" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleSignInClick:" destination="6N7-E1-EVS" eventType="touchUpInside" id="N5h-fn-O2T"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0M-9O-2rh">
+                                <rect key="frame" x="170" y="690" width="410" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Not a member yet? Click here to sign up">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.34509803921568627" green="0.63137254901960782" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="T0M-9O-2rh" firstAttribute="top" secondItem="rut-XF-sev" secondAttribute="bottom" constant="23" id="2oq-QS-AfP"/>
+                            <constraint firstItem="uVL-YX-Wg5" firstAttribute="top" secondItem="24B-ak-qSG" secondAttribute="top" constant="432" id="6Pg-kV-XCV"/>
+                            <constraint firstAttribute="trailing" secondItem="uVL-YX-Wg5" secondAttribute="trailing" id="Aa4-Sv-cmO"/>
+                            <constraint firstItem="rut-XF-sev" firstAttribute="top" secondItem="mRw-Ys-neX" secondAttribute="bottom" constant="58" id="GEv-UW-drW"/>
+                            <constraint firstAttribute="centerX" secondItem="T0M-9O-2rh" secondAttribute="centerX" constant="9" id="PGA-IN-orb"/>
+                            <constraint firstAttribute="centerX" secondItem="rut-XF-sev" secondAttribute="centerX" constant="-0.5" id="ZW2-mg-8Jy"/>
+                            <constraint firstItem="uVL-YX-Wg5" firstAttribute="leading" secondItem="24B-ak-qSG" secondAttribute="leading" id="m0W-qp-eX0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Q98-2e-Hkb"/>
+                    <connections>
+                        <outlet property="logoImage" destination="uVL-YX-Wg5" id="Jda-lO-wt3"/>
+                        <outlet property="logoImageTopConstraint" destination="6Pg-kV-XCV" id="B8s-tH-2pY"/>
+                        <outlet property="pinInput" destination="mRw-Ys-neX" id="e6g-RS-5uK"/>
+                        <outlet property="signInButton" destination="rut-XF-sev" id="2Pa-rX-rCk"/>
+                        <outlet property="signUpButton" destination="T0M-9O-2rh" id="Y9D-TE-6Y9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7CA-gW-V0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="12"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="I06-4f-Hf5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Qlb-hu-aoQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WTM-bT-UMJ">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6N7-E1-EVS" kind="relationship" relationship="rootViewController" id="p5Q-yq-ydo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sbb-ac-gZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="74" y="12"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="white_logo.png" width="2292" height="581"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
