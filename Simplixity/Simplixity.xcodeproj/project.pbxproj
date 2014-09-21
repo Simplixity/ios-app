@@ -10,6 +10,7 @@
 		CC7551E919CF128B00D0D088 /* DataTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7551E819CF128B00D0D088 /* DataTransferViewController.m */; };
 		CC7551ED19CF12AF00D0D088 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7551EC19CF12AF00D0D088 /* HomeViewController.m */; };
 		CC7551F419CF38AC00D0D088 /* MockPersonInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7551F319CF38AC00D0D088 /* MockPersonInformation.m */; };
+		CC7551F819CF55F300D0D088 /* ApproveRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7551F719CF55F300D0D088 /* ApproveRequestViewController.m */; };
 		CCADB81F19CDC78B00740375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB81E19CDC78B00740375 /* Foundation.framework */; };
 		CCADB82119CDC78B00740375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB82019CDC78B00740375 /* CoreGraphics.framework */; };
 		CCADB82319CDC78B00740375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADB82219CDC78B00740375 /* UIKit.framework */; };
@@ -58,6 +59,8 @@
 		CC7551EF19CF363A00D0D088 /* UserInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInformation.h; sourceTree = "<group>"; };
 		CC7551F219CF38AC00D0D088 /* MockPersonInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPersonInformation.h; sourceTree = "<group>"; };
 		CC7551F319CF38AC00D0D088 /* MockPersonInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPersonInformation.m; sourceTree = "<group>"; };
+		CC7551F619CF55F300D0D088 /* ApproveRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApproveRequestViewController.h; sourceTree = "<group>"; };
+		CC7551F719CF55F300D0D088 /* ApproveRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproveRequestViewController.m; sourceTree = "<group>"; };
 		CCADB81B19CDC78B00740375 /* Simplixity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simplixity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCADB81E19CDC78B00740375 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCADB82019CDC78B00740375 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -167,6 +170,15 @@
 				CC7551F319CF38AC00D0D088 /* MockPersonInformation.m */,
 			);
 			name = UserInfo;
+			sourceTree = "<group>";
+		};
+		CC7551F519CF55DD00D0D088 /* Approve Request */ = {
+			isa = PBXGroup;
+			children = (
+				CC7551F619CF55F300D0D088 /* ApproveRequestViewController.h */,
+				CC7551F719CF55F300D0D088 /* ApproveRequestViewController.m */,
+			);
+			name = "Approve Request";
 			sourceTree = "<group>";
 		};
 		CCADB81219CDC78B00740375 = {
@@ -305,6 +317,7 @@
 		CCADB87A19CE3C0200740375 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CC7551F519CF55DD00D0D088 /* Approve Request */,
 				CC7551EA19CF129C00D0D088 /* Home */,
 				CC7551E619CF126E00D0D088 /* Data Transfer */,
 				CC7551E519CF126300D0D088 /* Authentication */,
@@ -444,6 +457,7 @@
 				CCADB85B19CDCE8E00740375 /* Person.m in Sources */,
 				CCADB88E19CE5C6200740375 /* NSMutableURLRequest+EasyParams.m in Sources */,
 				CCADB87D19CE3C2500740375 /* AuthenticationViewController.m in Sources */,
+				CC7551F819CF55F300D0D088 /* ApproveRequestViewController.m in Sources */,
 				CCADB82B19CDC78B00740375 /* main.m in Sources */,
 				CCADB86B19CDF54A00740375 /* MockUserAuthentication.m in Sources */,
 				CCADB86119CDD03A00740375 /* Organization.m in Sources */,

@@ -12,8 +12,9 @@
 #import "AuthenticationViewController.h"
 #import "HomeViewController.h"
 #import "DataTransferViewController.h"
+#import "ApproveRequestViewController.h"
 
-@interface AppDelegate()<AuthenticationViewControllerDelegate, UINavigationControllerDelegate, HomeViewControllerDelegate>
+@interface AppDelegate()<AuthenticationViewControllerDelegate, UINavigationControllerDelegate, HomeViewControllerDelegate, DataTransferViewControllerDelegate, ApproveRequestViewControllerDelegate>
 @property(nonatomic)UIStoryboard *storyboard;
 
 //  Controller for main navigation.
@@ -107,12 +108,56 @@
     
     if (self.storyboard) {
         DataTransferViewController *dataTransferController = [self.storyboard instantiateViewControllerWithIdentifier:@"DataTransferViewController"];
-        //dataTransferController.delegate = self;
+        dataTransferController.delegate = self;
         dataTransferController.user = self.user;
         
         if (self.navigationController.topViewController) {
             [self.navigationController pushViewController:dataTransferController animated:YES];
         }
+    }
+}
+
+#pragma mark - DataTransferViewControllerDelegate
+-(void)dataTransferViewController:(DataTransferViewController*)controller forUser:(User*)user receivedRequest:(InformationRequest*)request {
+    NSLog(@"Received Request");
+    
+    if (self.storyboard) {
+        ApproveRequestViewController *approveController = [self.storyboard instantiateViewControllerWithIdentifier:@"ApproveRequestViewController"];
+        approveController.delegate = self;
+        approveController.request = request;
+        
+        if (self.navigationController.topViewController) {
+            [self.navigationController pushViewController:approveController animated:YES];
+        }
+    }
+}
+
+-(void)dataTransferViewController:(DataTransferViewController*)controller forUser:(User*)user successfullySentResponse:(InformationResponse*)response {
+    
+}
+
+-(void)dataTransferViewController:(DataTransferViewController*)controller requestResignForUser:(User*)user {
+    if (self.navigationController.topViewController == controller) {
+        controller.user = nil;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark - ApproveRequestViewControllerDelegate
+-(void)approveRequestViewController:(ApproveRequestViewController*)controller didProvideResponse:(InformationResponse*)response {
+    DataTransferViewController *dataTransferController;
+    NSArray *viewControllers = [self.navigationController viewControllers];
+    
+    if ([[viewControllers objectAtIndex:[viewControllers count] - 2] isKindOfClass:[DataTransferViewController class]]) {
+        dataTransferController = [viewControllers objectAtIndex:[viewControllers count] - 2];
+    }
+    
+    if (self.navigationController.topViewController == controller) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    if (dataTransferController) {
+        [dataTransferController sendResponse:response];
     }
 }
 

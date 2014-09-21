@@ -207,7 +207,7 @@
             NSLog(@"Poll Request Complete:%@", error);
             self.isPollRequestRunning = NO;
             
-            InformationRequest *informationRequest = nil;
+            InformationRequest *informationRequest;
             NSString *errorMessage;
             
             if (!error) {
@@ -220,13 +220,24 @@
             }
             else {
                 NSError *jsonError;
-                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+                NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
                 
                 if (jsonError) {
                     errorMessage = [jsonError helpAnchor];
                 }
                 else {
-                    
+                    informationRequest = [[InformationRequest alloc] init];
+                    informationRequest.personal = [jsonArray containsObject:@"Personal"];
+                    informationRequest.employer = [jsonArray containsObject:@"Employer"];
+                    informationRequest.mother = [jsonArray containsObject:@"Mother"];
+                    informationRequest.father = [jsonArray containsObject:@"Father"];
+                    informationRequest.emergency = [jsonArray containsObject:@"Emergency"];
+                    informationRequest.guardian = [jsonArray containsObject:@"Guardian"];
+                    informationRequest.medicalInsurancePolicies = [jsonArray containsObject:@"Medical Insurance"];
+                    informationRequest.dentalInsurancePolicies = [jsonArray containsObject:@"Dental Insurance"];
+                    informationRequest.visionInsurancePolicies = [jsonArray containsObject:@"Vision Insurance"];
+                    informationRequest.lifeInsurancePolicies = [jsonArray containsObject:@"Life Insurance"];
+                    informationRequest.conditions = [jsonArray containsObject:@"Medical Conditions"];
                 }
             }
             
@@ -299,7 +310,60 @@
             }
         }
         
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        NSMutableArray *informationToShow = [[NSMutableArray alloc] init];
+        
+        NSDictionary *jsonParams = @{@"username" : self.user.uid,
+                                     @"target_system_id" : self.targetId,
+                                     @"information_to_show" : informationToShow};
+        
+        if (informationResponse) {
+            if (informationResponse.personal) {
+                [informationToShow addObject:@"Personal"];
+            }
+            
+            if (informationResponse.employer) {
+                [informationToShow addObject:@"Employer"];
+            }
+            
+            if (informationResponse.mother) {
+                [informationToShow addObject:@"Mother"];
+            }
+            
+            if (informationResponse.father) {
+                [informationToShow addObject:@"Father"];
+            }
+            
+            if (informationResponse.guardian) {
+                [informationToShow addObject:@"Guardian"];
+            }
+            
+            if (informationResponse.emergency) {
+                [informationToShow addObject:@"Emergency"];
+            }
+            
+            if (informationResponse.medicalInsurancePolicies) {
+                [informationToShow addObject:@"Medical Insurance"];
+            }
+            
+            if (informationResponse.dentalInsurancePolicies) {
+                [informationToShow addObject:@"Dental Insurance"];
+            }
+            
+            if (informationResponse.lifeInsurancePolicies) {
+                [informationToShow addObject:@"Life Insurance"];
+            }
+            
+            if (informationResponse.visionInsurancePolicies) {
+                [informationToShow addObject:@"Vision Insurance"];
+            }
+            
+            if (informationResponse.conditions) {
+                [informationToShow addObject:@"Medical Conditions"];
+            }
+        }
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest urlWithString:[NSString stringWithFormat:@"%@/response", self.serverRoot] andMethod:@"POST" andJSON:jsonParams];
+        [request setTimeoutInterval:30];
 
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
             @try {
@@ -307,6 +371,11 @@
                 
                 BOOL success = NO;
                 NSString *errorMessage;
+                
+                if (!error) {
+                    NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    NSLog(@"Response:%@", responseData);
+                }
                 
                 if (error) {
                     errorMessage = [error helpAnchor];
@@ -319,7 +388,11 @@
                         errorMessage = [jsonError helpAnchor];
                     }
                     else {
+                        NSString *status = [json objectForKey:@"status"];
                         
+                        if ([status isEqualToString:@"Success"]) {
+                            success = YES;
+                        }
                     }
                 }
 

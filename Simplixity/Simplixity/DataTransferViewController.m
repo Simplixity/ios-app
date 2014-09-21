@@ -9,6 +9,7 @@
 #import "DataTransferViewController.h"
 #import "DataTransfer.h"
 #import "MockDataTransfer.h"
+#import "ApproveRequestViewController.h"
 
 @interface DataTransferViewController () <UITextFieldDelegate, DataTransferListener>
 @property(nonatomic)IBOutlet UIImageView *logoImage;
@@ -19,6 +20,7 @@
 
 //  DataTransfer used to communicate with the server.
 @property(nonatomic)id<DataTransfer> dataTransfer;
+@property(nonatomic)BOOL shouldReset;
 @end
 
 @implementation DataTransferViewController
@@ -28,23 +30,32 @@
 @synthesize registerButton = _registerButton;
 @synthesize loadingIndicator = _loadingIndicator;
 @synthesize loadingLabel = _loadingLabel;
+@synthesize delegate = _delegate;
 
 #pragma mark - View lifecycle
 -(void)viewWillAppear:(BOOL)animated {
-    [self.loadingIndicator stopAnimating];
-    self.loadingIndicator.alpha = 0;
-    self.loadingIndicator.hidden = YES;
+    if (self.shouldReset) {
+        [self.loadingIndicator stopAnimating];
+        self.loadingIndicator.alpha = 0;
+        self.loadingIndicator.hidden = YES;
+        
+        self.loadingLabel.hidden = YES;
+        self.loadingLabel.alpha = 0;
+    }
     
-    self.loadingLabel.hidden = YES;
-    self.loadingLabel.alpha = 0;
+    [super viewWillAppear:animated];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    self.registrationCodeInput.hidden = NO;
-    self.registrationCodeInput.alpha = 1.0f;
-    
-    self.registerButton.hidden = NO;
-    self.registerButton.alpha = 1.0f;
+    if (self.shouldReset) {
+        self.shouldReset = NO;
+        
+        self.registrationCodeInput.hidden = NO;
+        self.registrationCodeInput.alpha = 1.0f;
+        
+        self.registerButton.hidden = NO;
+        self.registerButton.alpha = 1.0f;
+    }
     
     [super viewDidAppear:animated];
 }
@@ -54,6 +65,7 @@
     self.loadingLabel.hidden = NO;
     self.loadingIndicator.hidden = NO;
     [self.loadingIndicator startAnimating];
+    [self.registrationCodeInput resignFirstResponder];
     
     [UIView animateWithDuration:0.25f animations:^{
         self.loadingLabel.alpha = 1.0f;
@@ -135,13 +147,13 @@
 //  The overall data transfer was successful.
 -(void)dataTransfer:(id)sender didEndSuccessfullyForUser:(User*)user withTargetId:(NSString*)targetId {
     NSLog(@"dataTransfer:didEndSuccessfullyForUser:withTargetId:");
-    [self showRegistrationUI];
+    //[self showRegistrationUI];
 }
 
 //  The overall data transfer failed with the error.
 -(void)dataTransfer:(id)sender didEndForUser:(User*)user withTargetId:(NSString*)targetId andError:(NSString*)error {
     NSLog(@"dataTransfer:didEndForUser:withTargetId:andError:");
-    [self showRegistrationUI];
+    //[self showRegistrationUI];
 }
 
 
@@ -169,8 +181,13 @@
 
 -(void)dataTransfer:(id)sender forUser:(User*)user receivedRequest:(InformationRequest*)request fromTargetId:(NSString*)targetId {
     NSLog(@"dataTransfer:forUser:receivedRequest:fromTargetId:");
-    
     self.loadingLabel.text = @"Received information request";
+    
+    if (self.delegate) {
+        if ([self.delegate respondsToSelector:@selector(dataTransferViewController:forUser:receivedRequest:)]) {
+            [self.delegate dataTransferViewController:self forUser:self.user receivedRequest:request];
+        }
+    }
 }
 
 -(void)dataTransfer:(id)sender forUser:(User*)user requestFailedFromTargetId:(NSString*)targetId withError:(NSString*)error {
@@ -181,15 +198,33 @@
 
 #pragma mark - Sending Data Response
 -(void)dataTransfer:(id)sender forUser:(User*)user isSendingResponse:(InformationResponse*)response toTargetId:(NSString*)targetId {
-    
+    NSLog(@"dataTransfer:forUser:isSendingResponse:toTargetId:");
+    self.loadingLabel.text = @"Sending information response";
 }
 
 -(void)dataTransfer:(id)sender forUser:(User*)user acceptedResponse:(InformationResponse*)response withTargetId:(NSString*)targetId {
+    NSLog(@"dataTransfer:forUser:acceptedResponse:withTargetId:");
+    self.loadingLabel.text = @"Registration Complete";
+    [self.loadingIndicator stopAnimating];
     
+    [UIView animateWithDuration:.25 animations:^{
+        self.loadingIndicator.alpha = 0.0f;
+    }];
+    
+    if (self.delegate) {
+        if ([self.delegate respondsToSelector:@selector(dataTransferViewController:forUser:successfullySentResponse:)]) {
+            [self.delegate dataTransferViewController:self forUser:self.user successfullySentResponse:response];
+        }
+    }
 }
 
 -(void)dataTransfer:(id)sender forUser:(User*)user failedWithError:(NSString*)error forTargetId:(NSString*)targetId andResponse:(InformationResponse*)response {
-    
+    NSLog(@"dataTransfer:forUser:receivedRequest:fromTargetId:");
+    self.loadingLabel.text = @"Received information request";
+}
+
+-(void)sendResponse:(InformationResponse*)response {
+    [self.dataTransfer sendResponse:response];
 }
 
 #pragma mark - Getters and setters
@@ -200,5 +235,10 @@
     }
     
     return _dataTransfer;
+}
+
+-(void)setUser:(User *)user {
+    _user = user;
+    self.shouldReset = YES;
 }
 @end
