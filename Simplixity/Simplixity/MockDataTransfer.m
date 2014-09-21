@@ -7,6 +7,7 @@
 //
 
 #import "MockDataTransfer.h"
+#import "NSMutableURLRequest+EasyParams.h"
 
 @interface MockDataTransfer()
 @property(nonatomic)User *user;
@@ -26,6 +27,9 @@
 
 //  Whether a poll request is currently running.
 @property(nonatomic)BOOL isPollRequestRunning;
+
+//  Root of the servers.
+@property(nonatomic)NSString *serverRoot;
 @end
 
 @implementation MockDataTransfer
@@ -68,19 +72,30 @@
             }
         }
         
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        NSDictionary *params = @{@"username" : self.user.uid, @"target_system_id" : self.targetId};
+        NSMutableURLRequest *request = [NSMutableURLRequest urlWithString:[NSString stringWithFormat:@"%@/authentication", self.serverRoot] andMethod:@"POST" andParams:params];
+        [request setTimeoutInterval:5];
         
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
             @try {
-                BOOL success = NO;
                 self.isHandshaking = NO;
                 
+                BOOL success = NO;
+                NSString *errorMessage;
+                
                 if (error) {
-                    
+                    errorMessage = [error helpAnchor];
                 }
                 else {
-                    //TODO parse data
+                    NSError *jsonError;
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+                    
+                    if (jsonError) {
+                        errorMessage = [jsonError helpAnchor];
+                    }
+                    else {
+                        
+                    }
                 }
                 
                 if (success) {
@@ -97,7 +112,7 @@
                         listener = [self.dataTransferListeners objectAtIndex:i];
                         
                         if ([listener respondsToSelector:@selector(dataTransfer:handshakeDidEndForUser:withTargetId:andError:)]) {
-                            [listener dataTransfer:self handshakeDidEndForUser:self.user withTargetId:self.targetId andError:@"error"];
+                            [listener dataTransfer:self handshakeDidEndForUser:self.user withTargetId:self.targetId andError:errorMessage];
                         }
                     }
                     
@@ -107,7 +122,7 @@
                         listener = [self.dataTransferListeners objectAtIndex:i];
                         
                         if ([listener respondsToSelector:@selector(dataTransfer:didEndForUser:withTargetId:andError:)]) {
-                            [listener dataTransfer:self didEndForUser:self.user withTargetId:self.targetId andError:@"error"];
+                            [listener dataTransfer:self didEndForUser:self.user withTargetId:self.targetId andError:errorMessage];
                         }
                     }
                 }
@@ -165,22 +180,28 @@
         __block long i = 0;
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-            InformationRequest *informationRequest = nil;
-            NSString *errorMessage = @"";
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+            self.isPollRequestRunning = NO;
             
-            if (!error) {
-                @try {
-                    //TODO parse response
+            InformationRequest *informationRequest = nil;
+            NSString *errorMessage;
+            
+            if (error) {
+                errorMessage = [error helpAnchor];
+            }
+            else {
+                NSError *jsonError;
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+                
+                if (jsonError) {
+                    errorMessage = [jsonError helpAnchor];
                 }
-                @catch (NSException *pollError) {
-                    errorMessage = [pollError reason];
+                else {
+                    
                 }
             }
             
-            self.isPollRequestRunning = NO;
             self.pollRequestStart = [NSDate date];
             
             if (informationRequest) {
@@ -191,7 +212,7 @@
                 
                 for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
                     if ([listener respondsToSelector:@selector(dataTransfer:forUser:requestFailedFromTargetId:withError:)]) {
-                        [listener dataTransfer:self forUser:self.user requestFailedFromTargetId:self.targetId withError:@"polled too many times for request"];
+                        [listener dataTransfer:self forUser:self.user requestFailedFromTargetId:self.targetId withError:@"Polled too many times for request"];
                     }
                 }
                 
@@ -201,7 +222,7 @@
                     listener = [self.dataTransferListeners objectAtIndex:i];
                     
                     if ([listener respondsToSelector:@selector(dataTransfer:didEndForUser:withTargetId:andError:)]) {
-                        [listener dataTransfer:self didEndForUser:self.user withTargetId:self.targetId andError:@"polled too many times for request"];
+                        [listener dataTransfer:self didEndForUser:self.user withTargetId:self.targetId andError:@"Polled too many times for request"];
                     }
                 }
             }
@@ -245,21 +266,50 @@
         }
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
             @try {
+                self.isSendingResponse = NO;
+                
                 BOOL success = NO;
-                //TODO parse
-                if (success) {
-                    
+                NSString *errorMessage;
+                
+                if (error) {
+                    errorMessage = [error helpAnchor];
                 }
                 else {
-                    self.isSendingResponse = NO;
+                    NSError *jsonError;
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+                    
+                    if (jsonError) {
+                        errorMessage = [jsonError helpAnchor];
+                    }
+                    else {
+                        
+                    }
+                }
+
+                if (success) {
+                    for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
+                        if ([listener respondsToSelector:@selector(dataTransfer:forUser:acceptedResponse:withTargetId:)]) {
+                            [listener dataTransfer:self forUser:self.user acceptedResponse:informationResponse withTargetId:self.targetId];
+                        }
+                    }
+                    
+                    self.isTransfering = NO;
                     
                     for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
+                        listener = [self.dataTransferListeners objectAtIndex:i];
+                        
+                        if ([listener respondsToSelector:@selector(dataTransfer:didEndSuccessfullyForUser:withTargetId:)]) {
+                            [listener dataTransfer:self didEndSuccessfullyForUser:self.user withTargetId:self.targetId];
+                        }
+                    }
+                }
+                else {
+                    for (i = [self.dataTransferListeners count] - 1; i >= 0; i--) {
                         if ([listener respondsToSelector:@selector(dataTransfer:forUser:failedWithError:forTargetId:andResponse:)]) {
-                            [listener dataTransfer:self forUser:self.user failedWithError:@"some rejection" forTargetId:self.targetId andResponse:informationResponse];
+                            [listener dataTransfer:self forUser:self.user failedWithError:errorMessage forTargetId:self.targetId andResponse:informationResponse];
                         }
                     }
                     
@@ -269,7 +319,7 @@
                         listener = [self.dataTransferListeners objectAtIndex:i];
                         
                         if ([listener respondsToSelector:@selector(dataTransfer:didEndForUser:withTargetId:andError:)]) {
-                            [listener dataTransfer:self didEndForUser:self.user withTargetId:self.targetId andError:@"some rejection"];
+                            [listener dataTransfer:self didEndForUser:self.user withTargetId:self.targetId andError:errorMessage];
                         }
                     }
                 }
@@ -317,5 +367,13 @@
     }
     
     return _dataTransferListeners;
+}
+
+-(NSString*)serverRoot {
+    if (!_serverRoot) {
+        _serverRoot = @"http://104.131.15.123:8080";
+    }
+    
+    return _serverRoot;
 }
 @end

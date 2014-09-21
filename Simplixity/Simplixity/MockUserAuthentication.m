@@ -31,8 +31,6 @@
         self.isAuthenticating = YES;
         self.authenticatingUser = user;
         
-        NSLog(@"Before calling listeners");
-        
         __block id<UserAuthenticationListener> listener;
         __block long i = 0;
         
@@ -44,29 +42,42 @@
             }
         }
         
-        NSLog(@"Building Request");
-        NSDictionary *params = @{@"username" : user.uid, @"password" : password};
-        NSMutableURLRequest *request = [NSMutableURLRequest urlWithString:[NSString stringWithFormat:@"%@/authentication", self.serverRoot] andMethod:@"POST" andParams:params];
+        NSDictionary *jsonParams = @{@"username" : user.uid, @"password" : password};
+        NSMutableURLRequest *request = [NSMutableURLRequest urlWithString:[NSString stringWithFormat:@"%@/authentication", self.serverRoot] andMethod:@"POST" andJSON:jsonParams];
+        [request setTimeoutInterval:5];
         
-        NSLog(@"Request built:%@,%@,%@", request.URL, request.HTTPMethod, request.HTTPBody);
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-            NSLog(@"Received request result%@,%@,%@", response, data, error);
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
             @try {
+                self.isAuthenticating = NO;
+                
                 BOOL success = NO;
                 NSString *errorMessage;
+                
+                if (!error) {
+                    NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    NSLog(@"Response:%@", responseData);
+                }
                 
                 if (error) {
                     errorMessage = [error helpAnchor];
                 }
-                
-                NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                NSLog(@"%@", responseData);
-                
-                //TODO parse data
-                self.isAuthenticating = NO;
-                
+                else {
+                    NSError *jsonError;
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+                    
+                    if (jsonError) {
+                        errorMessage = [jsonError helpAnchor];
+                    }
+                    else if (json) {
+                        //checking if authenticated
+                        NSString *sessionId = [json objectForKey:@"session_id"];
+                        
+                        if (sessionId) {
+                            success = YES;
+                        }
+                    }
+                }
+
                 if (success) {
                     for (i = [self.userAuthenticationListeners count] - 1; i >= 0; i--) {
                         listener = [self.userAuthenticationListeners objectAtIndex:i];

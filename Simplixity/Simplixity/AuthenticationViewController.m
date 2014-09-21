@@ -17,6 +17,8 @@
 @property(nonatomic)IBOutlet UITextField *pinInput;
 @property(nonatomic)IBOutlet UIButton *signInButton;
 @property(nonatomic)IBOutlet UIButton *signUpButton;
+@property(nonatomic)IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property(nonatomic)IBOutlet UILabel *loadingLabel;
 @property(nonatomic)BOOL shownFirst;
 @property(nonatomic)User *user;
 @property(nonatomic)MockUserAuthentication *userAuthentication;
@@ -28,6 +30,8 @@
 @synthesize pinInput = _pinInput;
 @synthesize signInButton = _signInButton;
 @synthesize signUpButton = _signUpButton;
+@synthesize loadingIndicator = _loadingIndicator;
+@synthesize loadingLabel = _loadingLabel;
 @synthesize shownFirst = _shownFirst;
 @synthesize user = _user;
 @synthesize userAuthentication = _userAuthentication;
@@ -38,9 +42,11 @@
     if (!self.shownFirst) {
         self.shownFirst = YES;
         
-        self.pinInput.alpha = 0;
-        self.signInButton.alpha = 0;
-        self.signUpButton.alpha = 0;
+        self.pinInput.alpha = 0.0f;
+        self.signInButton.alpha = 0.0f;
+        self.signUpButton.alpha = 0.0f;
+        self.loadingIndicator.alpha = 0.0f;
+        self.loadingLabel.alpha = 0.0f;
         self.logoImageTopConstraint.constant = 150;
         [self.view setNeedsUpdateConstraints];
         
@@ -106,35 +112,50 @@
 }
 
 -(void)userAuthentication:(id)sender didBeginForUser:(User*)user {
-    [self disableUI];
+    NSLog(@"userAuthentication:didBeginForUser:");
+    self.loadingLabel.text = @"Authenticating.  Please wait.";
+    [self showLoadingUI];
 }
 
 -(void)userAuthentication:(id)sender endedSuccessfullyForUser:(User*)user {
-    [self enableUI];
+    NSLog(@"userAuthentication:endedSuccessfullyForUser:");
+    self.loadingLabel.text = @"Authenticated.";
+    [self showLoginUI];
 }
 
 -(void)userAuthentication:(id)sender forUser:(User*)user endedWithError:(NSString*)error {
-    [self enableUI];
+    NSLog(@"userAuthentication:forUser:endedWithError:");
+    self.loadingLabel.text = @"Error authenticating.";
+    [self showLoginUI];
     NSLog(@"Error:%@", error);
 }
 
--(void)disableUI {
+-(void)showLoadingUI {
+    NSLog(@"showLoadingUI");
     self.pinInput.enabled = NO;
     self.signInButton.enabled = NO;
     self.signUpButton.enabled = NO;
+    [self.loadingIndicator startAnimating];
     
     [UIView animateWithDuration:.25 animations:^{
         self.pinInput.alpha = 0.0f;
         self.signInButton.alpha = 0.0f;
         self.signUpButton.alpha = 0.0f;
+        self.loadingIndicator.alpha = 1.0f;
+        self.loadingLabel.alpha = 1.0f;
     }];
 }
 
--(void)enableUI {
+-(void)showLoginUI {
+    NSLog(@"Showing login ui");
+    [self.loadingIndicator stopAnimating];
+    
     [UIView animateWithDuration:.25 animations:^{
         self.pinInput.alpha = 1.0f;
         self.signInButton.alpha = 1.0f;
         self.signUpButton.alpha = 1.0f;
+        self.loadingIndicator.alpha = 0.0f;
+        self.loadingLabel.alpha = 0.0f;
     } completion:^(BOOL finished) {
         self.pinInput.enabled = YES;
         self.signInButton.enabled = YES;

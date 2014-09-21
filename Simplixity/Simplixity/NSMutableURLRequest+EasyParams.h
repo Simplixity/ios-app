@@ -11,4 +11,7 @@
 @interface NSMutableURLRequest (EasyParams)
 //  Creates a new url request with the url, method, and params encoded.
 +(NSMutableURLRequest*)urlWithString:(NSString*)url andMethod:(NSString*)method andParams:(NSDictionary*)params;
+
+//  Creates a new url request with the url, method, and data to send as JSON.
++(NSMutableURLRequest*)urlWithString:(NSString*)url andMethod:(NSString*)method andJSON:(NSDictionary*)json;
 @end
